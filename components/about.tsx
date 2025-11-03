@@ -2,13 +2,13 @@
 
 export default function About() {
   return (
-    <section id="about" className="section">
-      <div className="container">
+    <section id="about" className="section" >
+      <div className="container" >
         <div className="about">
           <div>
             <h2>À Propos de Lina Constructions</h2>
             <p>
-              Depuis plus de 15 ans, Lina Constructions mêle savoir-faire traditionnel et technologies modernes pour
+               Lina Constructions mêle savoir-faire traditionnel et technologies modernes pour
               livrer des ouvrages durables, performants et élégants.
             </p>
             <p>
@@ -24,7 +24,6 @@ export default function About() {
               <li>✅ Communication régulière avec les clients</li>
             </ul>
           </div>
-          <div className="pic"></div>
         </div>
       </div>
 

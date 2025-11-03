@@ -13,7 +13,7 @@ export default function Hero() {
       <div className="container">
         <div className="wrap">
           <div>
-            <h1>Construction Professionnelle en Tunisie</h1>
+            <h1>Lina Constructions : Construction Professionnelle au Luxembourg</h1>
             <p>
               Solutions complètes de construction pour particuliers et entreprises. Résidentiel, commercial et
               industriel. Qualité garantie, délais respectés.
@@ -32,10 +32,6 @@ export default function Hero() {
                 <p>Projets réalisés</p>
               </div>
               <div className="kpi">
-                <h3>2+</h3>
-                <p>Années d&apos;expérience</p>
-              </div>
-              <div className="kpi">
                 <h3>98%</h3>
                 <p>Clients satisfaits</p>
               </div>
@@ -45,7 +41,6 @@ export default function Hero() {
               </div>
             </div>
           </div>
-          <div className="mock"></div>
         </div>
       </div>
 

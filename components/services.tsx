@@ -31,7 +31,7 @@ export default function Services() {
     {
       icon: "🔧",
       title: "Rénovation & Réhabilitation",
-      description: "Réhabilitation complète avec phasage intelligent pour limiter interruptions d&apos;activité.",
+      description: "Réhabilitation complète avec phasage intelligent.",
     },
   ]
 

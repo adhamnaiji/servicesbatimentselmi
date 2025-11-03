@@ -1,20 +1,92 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import Image from "next/image";
+import { useState, useEffect } from "react";
+import image1 from "./projects/1.jpeg";
+import image2 from "./projects/2.jpeg";
+import image3 from "./projects/3.jpeg";
+import image4 from "./projects/4.jpeg";
+import image5 from "./projects/5.jpeg";
+import image6 from "./projects/6.jpeg";
+import image7 from "./projects/7.jpeg";
+import image8 from "./projects/8.jpeg";
+import image9 from "./projects/9.jpeg";
+import image10 from "./projects/10.jpeg";
+import image11 from "./projects/11.jpeg";
+import image12 from "./projects/12.jpeg";
+import image13 from "./projects/13.jpeg";
+import image14 from "./projects/14.jpeg";
+import image15 from "./projects/15.jpeg";
+import image16 from "./projects/16.jpeg";
+import image17 from "./projects/17.jpeg";
+import image18 from "./projects/18.jpeg";
+import image19 from "./projects/19.jpeg";
+import image20 from "./projects/20.jpeg";
+import image21 from "./projects/21.jpeg";
+import image22 from "./projects/22.jpeg";
+import image23 from "./projects/23.jpeg";
+import image24 from "./projects/24.jpeg";
+import image25 from "./projects/25.jpeg";
+import image26 from "./projects/26.jpeg";
+import image27 from "./projects/27.jpeg";
+
+const projectsData = [
+  { id: 1, category: "lina constructions", src: image1, alt: "Projet 1" },
+  { id: 2, category: "lina constructions", src: image2, alt: "Projet 2" },
+  { id: 3, category: "lina constructions", src: image3, alt: "Projet 3" },
+  { id: 4, category: "lina constructions", src: image4, alt: "Projet 4" },
+  { id: 5, category: "lina constructions", src: image5, alt: "Projet 5" },
+  { id: 6, category: "lina constructions", src: image6, alt: "Projet 6" },
+  { id: 7, category: "lina constructions", src: image7, alt: "Projet 7" },
+  { id: 8, category: "lina constructions", src: image8, alt: "Projet 8" },
+  { id: 9, category: "lina constructions", src: image9, alt: "Projet 9" },
+  { id: 10, category: "lina constructions", src: image10, alt: "Projet 10" },
+  { id: 11, category: "lina constructions", src: image11, alt: "Projet 11" },
+  { id: 12, category: "lina constructions", src: image12, alt: "Projet 12" },
+  { id: 13, category: "lina constructions", src: image13, alt: "Projet 13" },
+  { id: 14, category: "lina constructions", src: image14, alt: "Projet 14" },
+  { id: 15, category: "lina constructions", src: image15, alt: "Projet 15" },
+  { id: 16, category: "lina constructions", src: image16, alt: "Projet 16" },
+  { id: 17, category: "lina constructions", src: image17, alt: "Projet 17" },
+  { id: 18, category: "lina constructions", src: image18, alt: "Projet 18" },
+  { id: 19, category: "lina constructions", src: image19, alt: "Projet 19" },
+  { id: 20, category: "lina constructions", src: image20, alt: "Projet 20" },
+  { id: 21, category: "lina constructions", src: image21, alt: "Projet 21" },
+  { id: 22, category: "lina constructions", src: image22, alt: "Projet 22" },
+  { id: 23, category: "lina constructions", src: image23, alt: "Projet 23" },
+  { id: 24, category: "lina constructions", src: image24, alt: "Projet 24" },
+  { id: 25, category: "lina constructions", src: image25, alt: "Projet 25" },
+  { id: 26, category: "lina constructions", src: image26, alt: "Projet 26" },
+  { id: 27, category: "lina constructions", src: image27, alt: "Projet 27" },
+];
 
 export default function Projects() {
-  const [filter, setFilter] = useState("tous")
+  const [filter, setFilter] = useState("tous");
+  const [loading, setLoading] = useState(true);
+  const [loadedImages, setLoadedImages] = useState(0);
 
-  const projects = [
-    { category: "commercial", title: "Centre Commercial", year: "2024", size: "5000m²" },
-    { category: "residential", title: "Résidence Prestige", year: "2023", size: "50 unités" },
-    { category: "industrial", title: "Usine Textile", year: "2023", size: "8000m²" },
-    { category: "commercial", title: "Bureau Moderne", year: "2024", size: "3500m²" },
-    { category: "residential", title: "Villa Contemporaine", year: "2023", size: "250m²" },
-    { category: "industrial", title: "Entrepôt Logistique", year: "2023", size: "6000m²" },
-  ]
+  const filteredProjects =
+    filter === "tous"
+      ? projectsData
+      : projectsData.filter((project) => project.category === filter);
 
-  const filteredProjects = filter === "tous" ? projects : projects.filter((p) => p.category === filter)
+  // Track image loading
+  const handleImageLoad = () => {
+    setLoadedImages((prev) => {
+      const newCount = prev + 1;
+      // Hide loading screen when all images are loaded
+      if (newCount >= filteredProjects.length) {
+        setTimeout(() => setLoading(false), 300); // Small delay for smooth transition
+      }
+      return newCount;
+    });
+  };
+
+  // Reset loading when filter changes
+  useEffect(() => {
+    setLoading(true);
+    setLoadedImages(0);
+  }, [filter]);
 
   return (
     <section id="projects" className="section">
@@ -22,34 +94,43 @@ export default function Projects() {
         <div className="section-title">
           <div>
             <h2>Nos Projets</h2>
-            <p>Réalisations de qualité</p>
+            <h3>Réalisations de qualité</h3>
           </div>
         </div>
-        <div className="filters">
-          {["tous", "residential", "commercial", "industrial"].map((f) => (
-            <button
-              key={f}
-              className={`chip filter-btn ${filter === f ? "active" : ""}`}
-              onClick={() => setFilter(f)}
-              aria-pressed={filter === f}
-            >
-              {f === "tous" && "Tous"}
-              {f === "residential" && "Résidentiel"}
-              {f === "commercial" && "Commercial"}
-              {f === "industrial" && "Industriel"}
-            </button>
-          ))}
-        </div>
-        <div className="projects">
+        
+        
+      
+
+        {/* Loading Splash Screen */}
+        {loading && (
+          <div className="loading-screen">
+            <div className="spinner"></div>
+            <p>Chargement des projets...</p>
+            <div className="progress-bar">
+              <div
+                className="progress-fill"
+                style={{
+                  width: `${(loadedImages / filteredProjects.length) * 100}%`,
+                }}
+              ></div>
+            </div>
+          </div>
+        )}
+
+        {/* Projects Grid */}
+        <div className={`projects ${loading ? "hidden" : ""}`}>
           {filteredProjects.map((project, index) => (
-            <div key={index} className="project">
-              <div className="img"></div>
-              <div className="info">
-                <h3>{project.title}</h3>
-                <p>
-                  {project.year} • {project.size}
-                </p>
-              </div>
+            <div key={project.id} className="project">
+              <Image
+                src={project.src}
+                alt={project.alt}
+                width={942}
+                height={747}
+                placeholder="blur"
+                priority={index < 3}
+                className="project-image"
+                onLoadingComplete={handleImageLoad}
+              />
             </div>
           ))}
         </div>
@@ -60,7 +141,6 @@ export default function Projects() {
           padding: clamp(56px, 7vw, 96px) 0;
           scroll-margin-top: 80px;
         }
-
         .section-title {
           display: flex;
           align-items: end;
@@ -68,24 +148,20 @@ export default function Projects() {
           gap: 1rem;
           margin-bottom: 28px;
         }
-
         .section-title h2 {
           font-size: clamp(1.4rem, 3.4vw, 2.2rem);
           margin: 0;
         }
-
         .section-title p {
           color: var(--muted);
           margin: 0;
         }
-
         .filters {
           display: flex;
           gap: 0.6rem;
           flex-wrap: wrap;
           margin-bottom: 28px;
         }
-
         .chip {
           border: 1px solid var(--line);
           padding: 0.45rem 0.8rem;
@@ -96,67 +172,90 @@ export default function Projects() {
           font-weight: 700;
           transition: all 0.2s;
         }
-
         .chip.active {
           background: var(--brand);
           color: #fff;
           border-color: transparent;
         }
 
+        /* Loading Screen */
+        .loading-screen {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 400px;
+          gap: 20px;
+        }
+        .spinner {
+          width: 50px;
+          height: 50px;
+          border: 4px solid var(--line);
+          border-top: 4px solid var(--brand);
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        .loading-screen p {
+          color: var(--muted);
+          font-size: 1.1rem;
+        }
+        .progress-bar {
+          width: 300px;
+          height: 4px;
+          background: var(--line);
+          border-radius: 2px;
+          overflow: hidden;
+        }
+        .progress-fill {
+          height: 100%;
+          background: var(--brand);
+          transition: width 0.3s ease;
+        }
+
+        /* Projects Grid */
         .projects {
           display: grid;
           gap: 18px;
           grid-template-columns: repeat(3, 1fr);
+          opacity: 1;
+          transition: opacity 0.3s ease;
         }
-
+        .projects.hidden {
+          opacity: 0;
+          height: 0;
+          overflow: hidden;
+        }
         .project {
           position: relative;
           border-radius: 16px;
           overflow: hidden;
           background: #0f1115;
-          aspect-ratio: 4/3;
           border: 1px solid var(--line);
+          aspect-ratio: 942 / 747;
         }
-
-        .img {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)),
-            url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 800 600%22%3E%3Crect width=%22800%22 height=%22600%22 fill=%22%232a2f38%22/%3E%3Crect x=%22100%22 y=%2290%22 width=%22120%22 height=%22400%22 fill=%22%23656b77%22/%3E%3Crect x=%22260%22 y=%22120%22 width=%22140%22 height=%22370%22 fill=%22%23575963%22/%3E%3Crect x=%22440%22 y=%22140%22 width=%22120%22 height=%22340%22 fill=%22%23797f88%22/%3E%3Crect x=%22590%22 y=%2280%22 width=%2290%22 height=%22440%22 fill=%22%23656b77%22/%3E%3C/svg%3E');
-          background-size: cover;
-          background-position: center;
+        :global(.project-image) {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: cover;
+          display: block;
+        }
+        .project:hover :global(.project-image) {
+          transform: scale(1.06);
           transition: transform 0.4s ease;
         }
-
-        .project:hover .img {
-          transform: scale(1.06);
-        }
-
-        .info {
-          position: absolute;
-          inset: auto 0 0 0;
-          padding: 16px;
-          color: #fff;
-          background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.75));
-        }
-
-        .info h3 {
-          margin: 0;
-          font-size: 1.1rem;
-        }
-
-        .info p {
-          margin: 4px 0 0;
-          font-size: 0.9rem;
-          color: #ccc;
-        }
-
         @media (max-width: 980px) {
           .projects {
             grid-template-columns: repeat(2, 1fr);
           }
         }
-
         @media (max-width: 580px) {
           .projects {
             grid-template-columns: 1fr;
@@ -164,5 +263,5 @@ export default function Projects() {
         }
       `}</style>
     </section>
-  )
+  );
 }

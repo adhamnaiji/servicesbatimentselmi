@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image";
+import logo from "./projects/Lina Constructions.png";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -24,7 +26,6 @@ export default function Header() {
       {/* Top Notice Bar */}
       <div className="notice">
         <div className="inner container">
-          <span className="badge">🏗️ Construction Qualité</span>
           <span>Entreprise de construction et rénovation - Résidentiel • Commercial • Industriel</span>
         </div>
       </div>
@@ -33,9 +34,14 @@ export default function Header() {
       <header id="header" className="header">
         <nav className="container">
           <Link href="#" className="brand">
-            <div className="logo">L</div>
-            <span>Lina Constructions</span>
-          </Link>
+  <Image 
+    src={logo} 
+    alt="Lina Constructions Logo" 
+    width={150} 
+    height={50}
+    priority
+  />
+</Link>
           <div className={`nav-links ${mobileMenuOpen ? "active" : ""}`} id="nav">
             <button onClick={() => scrollToSection("services")} className="nav-link">
               Services
@@ -60,7 +66,7 @@ export default function Header() {
             <span></span>
             <span></span>
           </button>
-          <button className="cta" onClick={() => scrollToSection("contact")} aria-label="Demander un devis gratuit">
+          <button className="cta" onClick={() => scrollToSection("#contact")} aria-label="Demander un devis gratuit">
             Devis Gratuit
           </button>
         </nav>

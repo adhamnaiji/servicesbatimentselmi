@@ -1,168 +1,352 @@
-"use client"
+"use client";
 
-import { type FormEvent, useState } from "react"
-import { sendContactEmail } from "@/app/actions"
+import React, { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 
-export default function Contact() {
-  const [formState, setFormState] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+interface FormData {
+  nom: string;
+  email: string;
+  telephone: string;
+  typeProjet: string;
+  budget: string;
+  description: string;
+}
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setIsLoading(true)
-    setFormState("Envoi en cours...")
+export default function ContactForm() {
+  const [formData, setFormData] = useState<FormData>({
+    nom: "",
+    email: "",
+    telephone: "",
+    typeProjet: "",
+    budget: "",
+    description: "",
+  });
 
-    const formData = new FormData(e.currentTarget)
-    const result = await sendContactEmail(formData)
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState<"success" | "error" | "">(
+    ""
+  );
 
-    if (result.success) {
-      setFormState("✅ " + result.message)
-      e.currentTarget.reset()
-    } else {
-      setFormState("❌ " + result.message)
+  useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "");
+  }, []);
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const validateForm = (): boolean => {
+    if (
+      !formData.nom ||
+      !formData.email ||
+      !formData.telephone ||
+      !formData.typeProjet ||
+      !formData.description
+    ) {
+      setMessage("Tous les champs requis doivent être remplis");
+      setMessageType("error");
+      return false;
     }
-    setIsLoading(false)
-  }
+
+    if (!formData.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      setMessage("Format d'email invalide");
+      setMessageType("error");
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    if (!validateForm()) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const templateParams = {
+        to_email: "info@linaconstructions.com",
+        client_name: formData.nom,
+        client_email: formData.email,
+        client_phone: formData.telephone,
+        project_type: formData.typeProjet,
+        budget: formData.budget,
+        description: formData.description,
+        date: new Date().toLocaleString("fr-TN"),
+        reply_to: formData.email,
+      };
+
+      const response = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
+        templateParams
+      );
+
+      if (response.status === 200) {
+        setMessage(
+          "Votre demande a été envoyée avec succès ! Nous vous contacterons dans les plus brefs délais."
+        );
+        setMessageType("success");
+
+        setFormData({
+          nom: "",
+          email: "",
+          telephone: "",
+          typeProjet: "",
+          budget: "",
+          description: "",
+        });
+
+        setTimeout(() => {
+          setMessage("");
+        }, 5000);
+      }
+    } catch (error) {
+      console.error("Email error:", error);
+      setMessage(
+        "Une erreur est survenue lors de l'envoi. Veuillez réessayer ou nous contacter directement."
+      );
+      setMessageType("error");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <section id="contact" className="section">
-      <div className="container">
-        <div className="section-title">
-          <div>
-            <h2>Demander un Devis</h2>
-            <p>Contactez-nous pour vos projets de construction</p>
+    <div style={{ marginLeft: "20px", marginRight: "20px" }}>
+      <form onSubmit={handleSubmit} style={{ maxWidth: "600px", margin: "0 auto" }}>
+        {message && (
+          <div
+            style={{
+              padding: "15px",
+              marginBottom: "20px",
+              borderRadius: "4px",
+              backgroundColor: messageType === "success" ? "#d4edda" : "#f8d7da",
+              color: messageType === "success" ? "#155724" : "#721c24",
+              border: `1px solid ${
+                messageType === "success" ? "#c3e6cb" : "#f5c6cb"
+              }`,
+              fontSize: "14px",
+            }}
+            role="alert"
+          >
+            {message}
           </div>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <div className="row">
-            <input type="text" name="nom" placeholder="Votre nom *" required aria-label="Nom" />
-            <input type="email" name="email" placeholder="Votre email *" required aria-label="Email" />
-          </div>
-          <div className="row">
-            <input type="tel" name="telephone" placeholder="Votre téléphone *" required aria-label="Téléphone" />
-            <select name="typeProjet" required aria-label="Type de projet">
-              <option value="">Sélectionner un type de projet *</option>
-              <option value="Résidentiel">Construction Résidentielle</option>
-              <option value="Commercial">Construction Commerciale</option>
-              <option value="Industriel">Construction Industrielle</option>
-              <option value="Rénovation">Rénovation & Réhabilitation</option>
-            </select>
-          </div>
-          <select name="budget" required aria-label="Budget">
-            <option value="">Sélectionner un budget estimé *</option>
-            <option value="Moins de 50000 TND">Moins de 50 000 TND</option>
-            <option value="50000 - 200000 TND">50 000 - 200 000 TND</option>
-            <option value="200000 - 500000 TND">200 000 - 500 000 TND</option>
-            <option value="500000+ TND">500 000+ TND</option>
-          </select>
-          <textarea
-            name="description"
-            placeholder="Décrivez votre projet *"
+        )}
+
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="nom"
+            style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}
+          >
+            Nom *
+          </label>
+          <input
+            type="text"
+            id="nom"
+            name="nom"
+            value={formData.nom}
+            onChange={handleChange}
             required
-            rows={5}
-            aria-label="Description du projet"
-          ></textarea>
-          <button type="submit" className="cta" disabled={isLoading}>
-            {isLoading ? "Envoi en cours..." : "Envoyer ma demande"}
-          </button>
-          {formState && (
-            <div className="form-message" style={{ color: formState.includes("✅") ? "green" : "red" }}>
-              {formState}
-            </div>
-          )}
-        </form>
-      </div>
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              fontSize: "14px",
+              boxSizing: "border-box",
+            }}
+            placeholder="Votre nom complet"
+          />
+        </div>
 
-      <style jsx>{`
-        .section {
-          padding: clamp(56px, 7vw, 96px) 0;
-          scroll-margin-top: 80px;
-        }
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="email"
+            style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}
+          >
+            Email *
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              fontSize: "14px",
+              boxSizing: "border-box",
+            }}
+            placeholder="votre.email@example.com"
+          />
+        </div>
 
-        .section-title {
-          display: flex;
-          align-items: end;
-          justify-content: space-between;
-          gap: 1rem;
-          margin-bottom: 28px;
-        }
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="telephone"
+            style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}
+          >
+            Téléphone *
+          </label>
+          <input
+            type="tel"
+            id="telephone"
+            name="telephone"
+            value={formData.telephone}
+            onChange={handleChange}
+            required
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              fontSize: "14px",
+              boxSizing: "border-box",
+            }}
+            placeholder="XXX XXX XXX"
+          />
+        </div>
 
-        .section-title h2 {
-          font-size: clamp(1.4rem, 3.4vw, 2.2rem);
-          margin: 0;
-        }
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="typeProjet"
+            style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}
+          >
+            Type de projet *
+          </label>
+          <select
+            id="typeProjet"
+            name="typeProjet"
+            value={formData.typeProjet}
+            onChange={handleChange}
+            required
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              fontSize: "14px",
+              boxSizing: "border-box",
+            }}
+          >
+            <option style={{ color: "#000000ff" }} value="">
+              Sélectionnez un type de projet
+            </option>
+            <option style={{ color: "#000000ff" }} value="Construction">
+              Construction
+            </option>
+            <option style={{ color: "#000000ff" }} value="Rénovation">
+              Rénovation
+            </option>
+            <option style={{ color: "#000000ff" }} value="Extension">
+              Extension
+            </option>
+            <option style={{ color: "#000000ff" }} value="Aménagement">
+              Aménagement
+            </option>
+            <option style={{ color: "#000000ff" }} value="Autre">
+              Autre
+            </option>
+          </select>
+        </div>
 
-        .section-title p {
-          color: var(--muted);
-          margin: 0;
-        }
+        <div style={{ marginBottom: "15px" }}>
+          <label
+            htmlFor="budget"
+            style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}
+          >
+            Budget (optionnel)
+          </label>
+          <input
+            type="text"
+            id="budget"
+            name="budget"
+            value={formData.budget}
+            onChange={handleChange}
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              fontSize: "14px",
+              boxSizing: "border-box",
+            }}
+            placeholder="$$$ - $$$"
+          />
+        </div>
 
-        form {
-          display: grid;
-          gap: 14px;
-        }
+        <div style={{ marginBottom: "20px" }}>
+          <label
+            htmlFor="description"
+            style={{ display: "block", marginBottom: "5px", fontWeight: "bold" }}
+          >
+            Description du projet *
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+            style={{
+              width: "100%",
+              padding: "10px",
+              border: "1px solid #ddd",
+              borderRadius: "4px",
+              fontSize: "14px",
+              boxSizing: "border-box",
+              minHeight: "150px",
+              fontFamily: "Arial, sans-serif",
+            }}
+            placeholder="Décrivez votre projet en détail..."
+          />
+        </div>
 
-        .row {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 14px;
-        }
-
-        input,
-        textarea,
-        select {
-          appearance: none;
-          width: 100%;
-          padding: 14px;
-          border-radius: 12px;
-          border: 1.5px solid var(--line);
-          background: var(--card);
-          color: var(--ink);
-          font: inherit;
-        }
-
-        input:focus,
-        textarea:focus,
-        select:focus {
-          outline: none;
-          border-color: color-mix(in srgb, var(--brand) 60%, var(--line));
-          box-shadow: 0 0 0 4px color-mix(in srgb, var(--brand) 16%, transparent);
-        }
-
-        .cta {
-          background: var(--brand);
-          color: white;
-          border: 0;
-          padding: 0.72rem 1.1rem;
-          border-radius: 12px;
-          font-weight: 800;
-          cursor: pointer;
-          box-shadow: 0 6px 16px rgba(255, 107, 53, 0.25);
-          transition: all 0.2s;
-        }
-
-        .cta:hover:not(:disabled) {
-          background: var(--brand-600);
-          transform: translateY(-1px);
-        }
-
-        .cta:disabled {
-          opacity: 0.7;
-          cursor: not-allowed;
-        }
-
-        .form-message {
-          margin-top: 12px;
-          text-align: center;
-          font-weight: 600;
-        }
-
-        @media (max-width: 580px) {
-          .row {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
-    </section>
-  )
+        <button
+          type="submit"
+          disabled={loading}
+          style={{
+            width: "100%",
+            padding: "12px",
+            backgroundColor: loading ? "#ccc" : "#ff9d3a",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            fontSize: "16px",
+            fontWeight: "bold",
+            cursor: loading ? "not-allowed" : "pointer",
+            transition: "background-color 0.3s",
+          }}
+          onMouseEnter={(e) => {
+            if (!loading) (e.target as HTMLButtonElement).style.backgroundColor =
+              "#e68a2e";
+          }}
+          onMouseLeave={(e) => {
+            if (!loading) (e.target as HTMLButtonElement).style.backgroundColor =
+              "#ff9d3a";
+          }}
+        >
+          {loading ? "Envoi en cours..." : "Envoyer ma demande"}
+        </button>
+      </form>
+    </div>
+  );
 }

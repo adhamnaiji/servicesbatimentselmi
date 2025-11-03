@@ -1,4 +1,4 @@
-"use server"
+/*"use server"
 
 import nodemailer from "nodemailer"
 
@@ -123,3 +123,4 @@ Lina Constructions`,
     }
   }
 }
+*/

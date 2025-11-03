@@ -7,15 +7,15 @@ const geist = Geist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.linaconstructions.com"),
-  title: "Lina Constructions - Services de Construction Professionnels en Tunisie",
+  title: "LINA Constructions SARLS - Construction générale Strassen",
   description:
-    "Lina Constructions - Services de construction professionnels en Tunisie. Résidentiel, commercial et industriel. Qualité garantie, délais respectés, devis gratuit.",
+    "Lina Constructions - Services de construction professionnels au Luxembourg. Résidentiel, commercial et industriel. Qualité garantie, délais respectés, devis gratuit.",
   keywords: [
     "construction",
     "lina construction",
     "services de construction",
     "construction Tunis",
-    "Tunisie",
+    "Luxembourg construction",
     "résidentiel",
     "commercial",
     "industriel",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website", // Changed from invalid "business.business" to valid "website"
     url: "https://www.linaconstructions.com",
-    title: "Lina Constructions - Services de Construction en Tunisie",
+    title: "Lina Constructions - Services de Construction au Luxembourg",
     description:
       "Construction professionnelle: résidentiel, commercial et industriel. Qualité garantie. Devis gratuit en 24h.",
     siteName: "Lina Constructions",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Lina Constructions - Services de Construction",
-    description: "Construction professionnelle en Tunisie: résidentiel, commercial, industriel.",
+    description: "Construction professionnelle au Luxembourg: résidentiel, commercial, industriel.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -71,19 +71,19 @@ export default function RootLayout({
               name: "Lina Constructions",
               image: "https://www.linaconstructions.com/logo.png",
               description:
-                "Entreprise de construction professionnelle spécialisée dans les projets résidentiels, commerciaux et industriels en Tunisie.",
+                "Entreprise de construction professionnelle spécialisée dans les projets résidentiels, commerciaux et industriels au Luxembourg.",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "[Votre adresse]",
-                addressLocality: "Tunis",
-                addressRegion: "Tunis",
-                postalCode: "[Code Postal]",
-                addressCountry: "TN",
+                streetAddress: "44 rue de l'industrie",
+                addressLocality: "LUXEMBOURG",
+                addressRegion: "LUXEMBOURG",
+                postalCode: "8069 Strassen",
+                addressCountry: "LU",
               },
-              telephone: "[+216...]",
+              telephone: "+352621633226",
               email: "info@linaconstructions.com",
               url: "https://www.linaconstructions.com",
-              sameAs: ["https://www.facebook.com/linaconstructions", "https://www.instagram.com/linaconstructions"],
+              sameAs: ["https://www.facebook.com/profile.php?id=61583341880229", "https://www.instagram.com/lina_constructions_luxembourg"],
               priceRange: "$$",
               areaServed: ["Tunis", "Tunisia"],
               knowsAbout: [

@@ -3,11 +3,11 @@
 export default function ContactPill() {
   return (
     <div className="pill">
-      <a href="tel:+21699999999" aria-label="Appeler Lina Constructions">
+      <a href="tel:+352621633226" aria-label="Appeler Lina Constructions">
         📞 Appeler
       </a>
       <a
-        href="https://wa.me/21699999999"
+        href="https://wa.me/+352621633226"
         target="_blank"
         rel="noopener noreferrer"
         className="secondary"
