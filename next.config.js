@@ -1,9 +1,11 @@
 // next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // Remove: output: 'export',
+  // This allows API routes to work!
+  
   images: {
-    unoptimized: true, // needed because OVH doesn't process Next.js image optimization
+    unoptimized: true,
   },
 };
 
