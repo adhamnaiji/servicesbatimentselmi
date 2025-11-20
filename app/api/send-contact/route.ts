@@ -24,7 +24,7 @@ function ContactEmailTemplate({
   return `
     <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px;">
       <h2 style="color: #333; border-bottom: 2px solid #ff9d3a; padding-bottom: 10px;">
-        Nouvelle demande de contact - Lina Constructions
+        Nouvelle demande de Devis - Lina Constructions
       </h2>
       
       <div style="background-color: #f5f5f5; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
     // Using onboarding@resend.dev for testing (domain still pending verification)
     const { data, error } = await resend.emails.send({
       from: 'Lina Constructions <onboarding@resend.dev>', // TESTING DOMAIN - works immediately
-      to: ['mohamedalielmabrouk66@gmail.com'], // Your personal email for testing
+      to: ['adhemnaiji@gmail.com'], // Your personal email for testing
       subject: `Nouvelle demande de contact - ${nom}`,
       html: htmlEmail,
       replyTo: email, // Allows direct replies to the client
