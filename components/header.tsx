@@ -36,7 +36,7 @@ export default function Header() {
           <Link href="#" className="brand">
   <Image 
     src={logo} 
-    alt="Lina Constructions Logo" 
+    alt="Services Batiment Selmi Logo" 
     width={150} 
     height={50}
     priority

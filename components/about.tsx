@@ -6,9 +6,9 @@ export default function About() {
       <div className="container" >
         <div className="about">
           <div>
-            <h2>À Propos de Lina Constructions</h2>
+            <h2>À Propos de Services Batiment Selmi</h2>
             <p>
-               Lina Constructions mêle savoir-faire traditionnel et technologies modernes pour
+               Services Batiment Selmi mêle savoir-faire traditionnel et technologies modernes pour
               livrer des ouvrages durables, performants et élégants.
             </p>
             <p>

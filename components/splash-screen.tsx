@@ -28,7 +28,7 @@ export default function SplashScreen({ children }: { children: React.ReactNode }
       <div className="splash-screen">
         <div className="splash-content">
           <div className="spinner"></div>
-          <h1 className="splash-title">Lina Constructions</h1>
+          <h1 className="splash-title">Services Batiment Selmi</h1>
           <p className="splash-subtitle">Chargement en cours...</p>
         </div>
 

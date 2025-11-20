@@ -7,27 +7,28 @@ const geist = Geist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.linaconstructions.com"),
-  title: "LINA Constructions SARLS - Construction générale Strassen",
+  title: "Services Batiment Selmi SARLS - Construction générale Strassen",
   description:
-    "Lina Constructions - Services de construction professionnels au Luxembourg. Résidentiel, commercial et industriel. Qualité garantie, délais respectés, devis gratuit.",
+    "Services Batiment Selmi - Services de construction professionnels au Luxembourg. Résidentiel, commercial et industriel. Qualité garantie, délais respectés, devis gratuit.",
   keywords: [
     "construction",
-    "lina construction",
+    "Services Batiment Selmi",
     "services de construction",
     "construction Tunis",
     "Luxembourg construction",
     "résidentiel",
+    "batiment",
     "commercial",
     "industriel",
   ],
-  authors: [{ name: "Lina Constructions" }],
+  authors: [{ name: "Services Batiment Selmi" }],
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   openGraph: {
     type: "website", // Changed from invalid "business.business" to valid "website"
     url: "https://www.linaconstructions.com",
-    title: "Lina Constructions - Services de Construction au Luxembourg",
+    title: "Services Batiment Selmi - Services Batiment Selmi au Luxembourg",
     description:
-      "Construction professionnelle: résidentiel, commercial et industriel. Qualité garantie. Devis gratuit en 24h.",
+      "Services Batiment Selmi: résidentiel, commercial et industriel. Qualité garantie. Devis gratuit en 24h.",
     siteName: "Lina Constructions",
     images: [
       {

@@ -13,7 +13,7 @@ export default function Hero() {
       <div className="container">
         <div className="wrap">
           <div>
-            <h1>Lina Constructions : Construction Professionnelle au Luxembourg</h1>
+            <h1>Services Batiment Selmi : Construction Professionnelle au Luxembourg</h1>
             <p>
               Solutions complètes de construction pour particuliers et entreprises. Résidentiel, commercial et
               industriel. Qualité garantie, délais respectés.

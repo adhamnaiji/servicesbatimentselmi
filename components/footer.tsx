@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
         <div className="copy">
           <p>
-            &copy; 2025 Lina Constructions. Tous droits réservés. | <a href="#">Politique de confidentialité</a>
+            &copy; 2025 Services Batiment Selmi. Tous droits réservés. | <a href="#">Politique de confidentialité</a>
           </p>
         </div>
       </div>

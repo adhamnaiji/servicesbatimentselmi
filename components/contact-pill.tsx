@@ -3,7 +3,7 @@
 export default function ContactPill() {
   return (
     <div className="pill">
-      <a href="tel:+352621633226" aria-label="Appeler Lina Constructions">
+      <a href="tel:+352621633226" aria-label="Appeler Services Batiment Selmi">
         📞 Appeler
       </a>
       <a
