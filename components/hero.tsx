@@ -1,160 +1,61 @@
-"use client"
+"use client";
 
 export default function Hero() {
   const scrollToContact = () => {
-    const element = document.getElementById("contact")
+    const element = document.getElementById("contact");
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
-    <section className="hero">
-      <div className="container">
-        <div className="wrap">
+    <section id="home" className="min-h-screen bg-gradient-to-r from-blue-600 to-blue-800 text-white flex items-center pt-20">
+      <div className="max-w-7xl mx-auto px-4 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1>Services Batiment Selmi : Construction Professionnelle au Luxembourg</h1>
-            <p>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Services Batiment Selmi : Construction Professionnelle En France
+            </h1>
+            <p className="text-xl text-blue-100 mb-8">
               Solutions complètes de construction pour particuliers et entreprises. Résidentiel, commercial et
               industriel. Qualité garantie, délais respectés.
             </p>
-            <div className="actions">
-              <button className="btn primary" onClick={scrollToContact}>
+            <div className="flex gap-4 flex-col md:flex-row">
+              <button
+                onClick={scrollToContact}
+                className="px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition"
+              >
                 Demander un Devis
               </button>
-              <a href="#projects" className="btn ghost">
+              <a
+                href="#projects"
+                className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition"
+              >
                 Voir nos projets →
               </a>
             </div>
-            <div className="kpis">
-              <div className="kpi">
-                <h3>50+</h3>
-                <p>Projets réalisés</p>
-              </div>
-              <div className="kpi">
-                <h3>98%</h3>
-                <p>Clients satisfaits</p>
-              </div>
-              <div className="kpi">
-                <h3>24h</h3>
-                <p>Réponse devis</p>
-              </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-6">
+            <div className="bg-white/20 backdrop-blur-md p-6 rounded-lg text-center">
+              <div className="text-4xl font-bold mb-2">50+</div>
+              <p className="text-blue-100">Projets réalisés</p>
+            </div>
+            <div className="bg-white/20 backdrop-blur-md p-6 rounded-lg text-center">
+              <div className="text-4xl font-bold mb-2">98%</div>
+              <p className="text-blue-100">Clients satisfaits</p>
+            </div>
+            <div className="bg-white/20 backdrop-blur-md p-6 rounded-lg text-center">
+              <div className="text-4xl font-bold mb-2">24h</div>
+              <p className="text-blue-100">Réponse devis</p>
+            </div>
+            <div className="bg-white/20 backdrop-blur-md p-6 rounded-lg text-center">
+              <div className="text-4xl font-bold mb-2">30+</div>
+              <p className="text-blue-100">Ans d'expérience</p>
             </div>
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .hero {
-          position: relative;
-          background: radial-gradient(1200px 600px at 80% -10%, rgba(255, 107, 53, 0.28), transparent 50%), var(--hero);
-          color: white;
-          overflow: hidden;
-        }
-
-        .wrap {
-          display: grid;
-          grid-template-columns: 1.2fr 0.8fr;
-          gap: 48px;
-          padding: clamp(56px, 7vw, 100px) 0;
-        }
-
-        .kpis {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 18px;
-          margin-top: 26px;
-        }
-
-        .kpi {
-          background: rgba(255, 255, 255, 0.06);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 16px;
-          padding: 16px;
-          text-align: center;
-        }
-
-        .kpi h3 {
-          font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-          margin: 0.1rem 0;
-        }
-
-        h1 {
-          font-size: clamp(1.8rem, 4.8vw, 3.2rem);
-          line-height: 1.18;
-          margin: 0 0 12px;
-        }
-
-        p {
-          color: #e7eaee;
-          margin: 0 0 24px;
-        }
-
-        .actions {
-          display: flex;
-          gap: 0.75rem;
-          flex-wrap: wrap;
-        }
-
-        .btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.6rem;
-          padding: 0.9rem 1.1rem;
-          border-radius: 12px;
-          font-weight: 800;
-          text-decoration: none;
-          border: 2px solid transparent;
-          cursor: pointer;
-        }
-
-        .btn.primary {
-          background: var(--brand);
-          color: #fff;
-        }
-
-        .btn.primary:hover {
-          background: var(--brand-600);
-        }
-
-        .btn.ghost {
-          border-color: rgba(255, 255, 255, 0.28);
-          color: white;
-        }
-
-        .btn.ghost:hover {
-          background: rgba(255, 255, 255, 0.08);
-        }
-
-        .mock {
-          border-radius: 18px;
-          background: linear-gradient(180deg, #2a2f38, #161a21);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          min-height: 340px;
-          position: relative;
-          box-shadow: var(--shadow);
-          background-image: repeating-linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.05) 0 2px,
-            transparent 2px 6px
-          );
-        }
-
-        @media (max-width: 980px) {
-          .wrap {
-            grid-template-columns: 1fr;
-          }
-          .kpis {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (max-width: 580px) {
-          .kpis {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
     </section>
-  )
+  );
 }

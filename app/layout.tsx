@@ -6,10 +6,10 @@ import "./globals.css"
 const geist = Geist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.linaconstructions.com"),
+  metadataBase: new URL("https://www.servicesbatimentselmi.com"),
   title: "Services Batiment Selmi SARLS - Construction générale Strassen",
   description:
-    "Services Batiment Selmi - Services de construction professionnels au Luxembourg. Résidentiel, commercial et industriel. Qualité garantie, délais respectés, devis gratuit.",
+    "Services Batiment Selmi - Services de construction professionnels En France. Résidentiel, commercial et industriel. Qualité garantie, délais respectés, devis gratuit.",
   keywords: [
     "construction",
     "Services Batiment Selmi",
@@ -26,10 +26,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website", // Changed from invalid "business.business" to valid "website"
     url: "https://www.linaconstructions.com",
-    title: "Services Batiment Selmi - Services Batiment Selmi au Luxembourg",
+    title: "Services Batiment Selmi - Services Batiment Selmi En France",
     description:
       "Services Batiment Selmi: résidentiel, commercial et industriel. Qualité garantie. Devis gratuit en 24h.",
-    siteName: "Lina Constructions",
+    siteName: "Services Batiment Selmi",
     images: [
       {
         url: "/og-image.png",
@@ -40,12 +40,12 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lina Constructions - Services de Construction",
-    description: "Construction professionnelle au Luxembourg: résidentiel, commercial, industriel.",
+    title: "Services Batiment Selmi - Services de Construction",
+    description: "Construction professionnelle En France: résidentiel, commercial, industriel.",
     images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://www.linaconstructions.com",
+    canonical: "https://www.ServicesBatimentSelmi.com",
   },
   icons: {
     icon: "/favicon.ico",
@@ -68,18 +68,18 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "@id": "https://www.linaconstructions.com",
+              "@id": "https://www.ServicesBatimentSelmi.com",
               name: "Lina Constructions",
-              image: "https://www.linaconstructions.com/logo.png",
+              image: "https://www.ServicesBatimentSelmi.com/logo.png",
               description:
                 "Entreprise de construction professionnelle spécialisée dans les projets résidentiels, commerciaux et industriels au Luxembourg.",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "44 rue de l'industrie",
-                addressLocality: "LUXEMBOURG",
-                addressRegion: "LUXEMBOURG",
-                postalCode: "8069 Strassen",
-                addressCountry: "LU",
+                addressLocality: "France",
+                addressRegion: "France",
+                postalCode: " Metz",
+                addressCountry: "FR",
               },
               telephone: "+352621633226",
               email: "info@linaconstructions.com",

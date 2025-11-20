@@ -32,7 +32,7 @@ import image27 from "./projects/27.jpeg";
 import image28 from "./projects/28.jpg";
 import image29 from "./projects/29.jpg";
 import image30 from "./projects/30.jpg";
-import image31 from "./projects/31.jpg"; 
+import image31 from "./projects/31.jpg";
 
 const projectsData = [
   { id: 1, category: "lina constructions", src: image1, alt: "Projet 1" },
@@ -97,179 +97,38 @@ export default function Projects() {
   }, [filter]);
 
   return (
-    <section id="projects" className="section">
-      <div className="container">
-        <div className="section-title">
-          <div>
-            <h2>Nos Projets</h2>
-            <h3>Réalisations de qualité</h3>
-          </div>
-        </div>
-        
-        
-      
+    <section id="projects" className="py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Nos Projets</h2>
+        <p className="text-center text-gray-600 mb-12">Réalisations de qualité</p>
 
         {/* Loading Splash Screen */}
         {loading && (
-          <div className="loading-screen">
-            <div className="spinner"></div>
-            <p>Chargement des projets...</p>
-            <div className="progress-bar">
-              <div
-                className="progress-fill"
-                style={{
-                  width: `${(loadedImages / filteredProjects.length) * 100}%`,
-                }}
-              ></div>
+          <div className="flex items-center justify-center min-h-64">
+            <div className="text-center">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+              <p className="mt-4 text-gray-600">Chargement des projets...</p>
             </div>
           </div>
         )}
 
         {/* Projects Grid */}
-        <div className={`projects ${loading ? "hidden" : ""}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${loading ? "hidden" : ""}`}>
           {filteredProjects.map((project, index) => (
-            <div key={project.id} className="project">
-              <Image
-                src={project.src}
-                alt={project.alt}
-                width={942}
-                height={747}
-                placeholder="blur"
-                priority={index < 3}
-                className="project-image"
-                onLoadingComplete={handleImageLoad}
-              />
+            <div key={project.id} className="group overflow-hidden rounded-lg shadow-md hover:shadow-lg transition">
+              <div className="relative h-64 overflow-hidden bg-gray-200">
+                <Image
+                  src={project.src}
+                  alt={project.alt}
+                  fill
+                  className="object-cover group-hover:scale-105 transition duration-300"
+                  onLoad={handleImageLoad}
+                />
+              </div>
             </div>
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        .section {
-          padding: clamp(56px, 7vw, 96px) 0;
-          scroll-margin-top: 80px;
-        }
-        .section-title {
-          display: flex;
-          align-items: end;
-          justify-content: space-between;
-          gap: 1rem;
-          margin-bottom: 28px;
-        }
-        .section-title h2 {
-          font-size: clamp(1.4rem, 3.4vw, 2.2rem);
-          margin: 0;
-        }
-        .section-title p {
-          color: var(--muted);
-          margin: 0;
-        }
-        .filters {
-          display: flex;
-          gap: 0.6rem;
-          flex-wrap: wrap;
-          margin-bottom: 28px;
-        }
-        .chip {
-          border: 1px solid var(--line);
-          padding: 0.45rem 0.8rem;
-          border-radius: 999px;
-          background: var(--card);
-          color: var(--muted);
-          cursor: pointer;
-          font-weight: 700;
-          transition: all 0.2s;
-        }
-        .chip.active {
-          background: var(--brand);
-          color: #fff;
-          border-color: transparent;
-        }
-
-        /* Loading Screen */
-        .loading-screen {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          min-height: 400px;
-          gap: 20px;
-        }
-        .spinner {
-          width: 50px;
-          height: 50px;
-          border: 4px solid var(--line);
-          border-top: 4px solid var(--brand);
-          border-radius: 50%;
-          animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-        .loading-screen p {
-          color: var(--muted);
-          font-size: 1.1rem;
-        }
-        .progress-bar {
-          width: 300px;
-          height: 4px;
-          background: var(--line);
-          border-radius: 2px;
-          overflow: hidden;
-        }
-        .progress-fill {
-          height: 100%;
-          background: var(--brand);
-          transition: width 0.3s ease;
-        }
-
-        /* Projects Grid */
-        .projects {
-          display: grid;
-          gap: 18px;
-          grid-template-columns: repeat(3, 1fr);
-          opacity: 1;
-          transition: opacity 0.3s ease;
-        }
-        .projects.hidden {
-          opacity: 0;
-          height: 0;
-          overflow: hidden;
-        }
-        .project {
-          position: relative;
-          border-radius: 16px;
-          overflow: hidden;
-          background: #0f1115;
-          border: 1px solid var(--line);
-          aspect-ratio: 942 / 747;
-        }
-        :global(.project-image) {
-          width: 100% !important;
-          height: 100% !important;
-          object-fit: cover;
-          display: block;
-        }
-        .project:hover :global(.project-image) {
-          transform: scale(1.06);
-          transition: transform 0.4s ease;
-        }
-        @media (max-width: 980px) {
-          .projects {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        @media (max-width: 580px) {
-          .projects {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
     </section>
   );
 }

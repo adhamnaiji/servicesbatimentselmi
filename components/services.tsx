@@ -33,109 +33,27 @@ export default function Services() {
       title: "Rénovation & Réhabilitation",
       description: "Réhabilitation complète avec phasage intelligent.",
     },
-  ]
+  ];
 
   return (
-    <section id="services" className="section">
-      <div className="container">
-        <div className="section-title">
-          <div>
-            <h2>Services de Construction</h2>
-            <p>Solutions adaptées à vos besoins</p>
-          </div>
-        </div>
-        <div className="grid cols-3">
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Services de Construction</h2>
+        <p className="text-center text-gray-600 mb-12">Solutions adaptées à vos besoins</p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <div key={index} className="card">
-              <div className="service-head">
-                <div className="service-ico">{service.icon}</div>
-                <h3>{service.title}</h3>
-              </div>
-              <p>{service.description}</p>
+            <div
+              key={index}
+              className="p-6 rounded-lg border border-blue-200 hover:border-blue-400 transition-colors bg-gradient-to-br from-blue-50 to-white"
+            >
+              <div className="text-4xl mb-4">{service.icon}</div>
+              <h3 className="text-xl font-semibold mb-3 text-gray-900">{service.title}</h3>
+              <p className="text-gray-600">{service.description}</p>
             </div>
           ))}
         </div>
       </div>
-
-      <style jsx>{`
-        .section {
-          padding: clamp(56px, 7vw, 96px) 0;
-          scroll-margin-top: 80px;
-        }
-
-        .section-title {
-          display: flex;
-          align-items: end;
-          justify-content: space-between;
-          gap: 1rem;
-          margin-bottom: 28px;
-        }
-
-        .section-title h2 {
-          font-size: clamp(1.4rem, 3.4vw, 2.2rem);
-          margin: 0;
-        }
-
-        .section-title p {
-          color: var(--muted);
-          margin: 0;
-        }
-
-        .grid {
-          display: grid;
-          gap: 18px;
-        }
-
-        .grid.cols-3 {
-          grid-template-columns: repeat(3, 1fr);
-        }
-
-        .card {
-          background: var(--card);
-          border: 1px solid var(--line);
-          border-radius: var(--radius);
-          padding: 22px;
-          box-shadow: var(--shadow);
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .card:hover {
-          transform: translateY(-4px);
-        }
-
-        .service-head {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 8px;
-        }
-
-        .service-ico {
-          width: 44px;
-          height: 44px;
-          border-radius: 12px;
-          background: color-mix(in srgb, var(--brand) 16%, transparent);
-          display: grid;
-          place-items: center;
-          font-size: 22px;
-        }
-
-        .card p {
-          color: var(--muted);
-        }
-
-        @media (max-width: 980px) {
-          .grid.cols-3 {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-
-        @media (max-width: 580px) {
-          .grid.cols-3 {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
     </section>
-  )
+  );
 }

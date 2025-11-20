@@ -1,193 +1,119 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image";
-import logo from "./projects/Lina Constructions.png";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 export default function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80
-      const elementPosition = element.offsetTop - headerHeight
-      window.scrollTo({
-        top: elementPosition,
-        behavior: "smooth",
-      })
-      setMobileMenuOpen(false)
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsOpen(false);
     }
-  }
+  };
 
   return (
-    <>
-      {/* Top Notice Bar */}
-      <div className="notice">
-        <div className="inner container">
-          <span>Entreprise de construction et rénovation - Résidentiel • Commercial • Industriel</span>
-        </div>
-      </div>
+    <header
+      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-lg" : "bg-white/80 backdrop-blur-md"
+      }`}
+    >
+      <nav className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        {/* Logo */}
+        <div className="text-2xl font-bold text-blue-600">Services Batiment Selmi</div>
 
-      {/* Header/Navigation */}
-      <header id="header" className="header">
-        <nav className="container">
-          <Link href="#" className="brand">
-  <Image 
-    src={logo} 
-    alt="Services Batiment Selmi Logo" 
-    width={150} 
-    height={50}
-    priority
-  />
-</Link>
-          <div className={`nav-links ${mobileMenuOpen ? "active" : ""}`} id="nav">
-            <button onClick={() => scrollToSection("services")} className="nav-link">
+        {/* Desktop Menu */}
+        <div className="hidden md:flex gap-8">
+          <button
+            onClick={() => scrollToSection("home")}
+            className="text-gray-700 hover:text-blue-600 transition"
+          >
+            Accueil
+          </button>
+          <button
+            onClick={() => scrollToSection("about")}
+            className="text-gray-700 hover:text-blue-600 transition"
+          >
+            À Propos
+          </button>
+          <button
+            onClick={() => scrollToSection("services")}
+            className="text-gray-700 hover:text-blue-600 transition"
+          >
+            Services
+          </button>
+          <button
+            onClick={() => scrollToSection("projects")}
+            className="text-gray-700 hover:text-blue-600 transition"
+          >
+            Projets
+          </button>
+          <button
+            onClick={() => scrollToSection("contact")}
+            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+          >
+            Contact
+          </button>
+        </div>
+
+        {/* Mobile Menu Button */}
+        <button onClick={toggleMenu} className="md:hidden text-2xl text-gray-700">
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      </nav>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-white border-t border-gray-200 py-4">
+          <div className="flex flex-col gap-4 px-4">
+            <button
+              onClick={() => scrollToSection("home")}
+              className="text-gray-700 hover:text-blue-600 text-left transition"
+            >
+              Accueil
+            </button>
+            <button
+              onClick={() => scrollToSection("about")}
+              className="text-gray-700 hover:text-blue-600 text-left transition"
+            >
+              À Propos
+            </button>
+            <button
+              onClick={() => scrollToSection("services")}
+              className="text-gray-700 hover:text-blue-600 text-left transition"
+            >
               Services
             </button>
-            <button onClick={() => scrollToSection("projects")} className="nav-link">
+            <button
+              onClick={() => scrollToSection("projects")}
+              className="text-gray-700 hover:text-blue-600 text-left transition"
+            >
               Projets
             </button>
-            <button onClick={() => scrollToSection("about")} className="nav-link">
-              À propos
-            </button>
-            <button onClick={() => scrollToSection("contact")} className="nav-link">
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+            >
               Contact
             </button>
           </div>
-          <button
-            id="menuToggle"
-            className="menu"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Menu mobile"
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <button className="cta" onClick={() => scrollToSection("#contact")} aria-label="Demander un devis gratuit">
-            Devis Gratuit
-          </button>
-        </nav>
-      </header>
-
-      <style jsx>{`
-        .header {
-          position: sticky;
-          top: 0;
-          z-index: 50;
-          backdrop-filter: saturate(140%) blur(6px);
-          background: color-mix(in srgb, var(--bg) 70%, transparent);
-          border-bottom: 1px solid var(--line);
-        }
-
-        nav {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 1rem;
-          padding: 0.7rem 0;
-        }
-
-        .brand {
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          text-decoration: none;
-          cursor: pointer;
-        }
-
-        .logo {
-          width: 34px;
-          height: 34px;
-          border-radius: 10px;
-          display: grid;
-          place-items: center;
-          background: var(--brand);
-          color: white;
-          font-weight: 900;
-        }
-
-        .brand span {
-          font-weight: 800;
-          letter-spacing: 0.2px;
-          color: var(--ink);
-        }
-
-        .nav-links {
-          display: flex;
-          gap: 1rem;
-        }
-
-        .nav-link {
-          padding: 0.5rem 0.8rem;
-          border-radius: 10px;
-          text-decoration: none;
-          color: var(--muted);
-          font-weight: 600;
-          background: none;
-          border: none;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-
-        .nav-link:hover {
-          color: var(--ink);
-          background: var(--line);
-        }
-
-        .cta {
-          --bgc: var(--brand);
-          --bgh: var(--brand-600);
-          background: var(--bgc);
-          color: white;
-          border: 0;
-          padding: 0.72rem 1.1rem;
-          border-radius: 12px;
-          font-weight: 800;
-          cursor: pointer;
-          box-shadow: 0 6px 16px rgba(255, 107, 53, 0.25);
-          transition: all 0.2s;
-        }
-
-        .cta:hover {
-          background: var(--bgh);
-          transform: translateY(-1px);
-        }
-
-        .menu {
-          display: none;
-        }
-
-        @media (max-width: 980px) {
-          .nav-links {
-            display: none;
-            position: fixed;
-            inset: 80px 0 auto 0;
-            background: var(--bg);
-            border-top: 1px solid var(--line);
-            padding: 12px 16px;
-            flex-direction: column;
-          }
-
-          .nav-links.active {
-            display: flex;
-          }
-
-          .menu {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: transparent;
-            border: 1px solid var(--line);
-            padding: 0.55rem 0.75rem;
-            border-radius: 10px;
-            font-weight: 800;
-            cursor: pointer;
-          }
-        }
-      `}</style>
-    </>
-  )
+        </div>
+      )}
+    </header>
+  );
 }

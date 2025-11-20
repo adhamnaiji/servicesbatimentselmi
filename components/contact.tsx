@@ -12,7 +12,7 @@ interface FormData {
 }
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     nom: "",
     email: "",
     telephone: "",
@@ -61,7 +61,7 @@ export default function ContactForm() {
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
@@ -90,7 +90,6 @@ export default function ContactForm() {
           "Votre demande a été envoyée avec succès ! Nous vous contacterons dans les plus brefs délais."
         );
         setMessageType("success");
-
         setFormData({
           nom: "",
           email: "",
@@ -122,255 +121,123 @@ export default function ContactForm() {
   };
 
   return (
-    <div style={{ marginLeft: "20px", marginRight: "20px" }}>
-      <form
-        onSubmit={handleSubmit}
-        style={{ maxWidth: "600px", margin: "0 auto" }}
-      >
-        {message && (
-          <div
-            style={{
-              padding: "15px",
-              marginBottom: "20px",
-              borderRadius: "4px",
-              backgroundColor:
-                messageType === "success" ? "#d4edda" : "#f8d7da",
-              color: messageType === "success" ? "#155724" : "#721c24",
-              border: `1px solid ${
-                messageType === "success" ? "#c3e6cb" : "#f5c6cb"
-              }`,
-              fontSize: "14px",
-            }}
-            role="alert"
-          >
-            {message}
+    <section id="contact" className="py-20 bg-gray-50">
+      <div className="max-w-2xl mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Demander un Devis</h2>
+        <p className="text-center text-gray-600 mb-12">Remplissez le formulaire ci-dessous et nous vous répondrons dans les 24 heures</p>
+
+        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg">
+          {message && (
+            <div
+              className={`mb-6 p-4 rounded-lg ${
+                messageType === "success"
+                  ? "bg-green-100 text-green-700 border border-green-300"
+                  : "bg-red-100 text-red-700 border border-red-300"
+              }`}
+            >
+              {message}
+            </div>
+          )}
+
+          <div className="mb-6">
+            <label className="block text-gray-700 font-semibold mb-2">Nom *</label>
+            <input
+              type="text"
+              name="nom"
+              value={formData.nom}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              placeholder="Votre nom"
+              required
+            />
           </div>
-        )}
 
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            htmlFor="nom"
-            style={{
-              display: "block",
-              marginBottom: "5px",
-              fontWeight: "bold",
+          <div className="mb-6">
+            <label className="block text-gray-700 font-semibold mb-2">Email *</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              placeholder="votre.email@example.com"
+              required
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-gray-700 font-semibold mb-2">Téléphone *</label>
+            <input
+              type="tel"
+              name="telephone"
+              value={formData.telephone}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              placeholder="+352 XX XX XX XX"
+              required
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-gray-700 font-semibold mb-2">Type de projet *</label>
+            <select
+              name="typeProjet"
+              value={formData.typeProjet}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              required
+            >
+              <option value="">Sélectionnez un type de projet</option>
+              <option value="Construction">Construction</option>
+              <option value="Rénovation">Rénovation</option>
+              <option value="Extension">Extension</option>
+              <option value="Aménagement">Aménagement</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-gray-700 font-semibold mb-2">Budget (optionnel)</label>
+            <input
+              type="text"
+              name="budget"
+              value={formData.budget}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              placeholder="ex: 50,000 - 100,000 €"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label className="block text-gray-700 font-semibold mb-2">Description du projet *</label>
+            <textarea
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              placeholder="Décrivez votre projet..."
+              rows={6}
+              required
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition disabled:bg-gray-400"
+            onMouseEnter={(e) => {
+              if (!loading)
+                (e.target as HTMLButtonElement).style.backgroundColor = "#1e3a8a";
+            }}
+            onMouseLeave={(e) => {
+              if (!loading)
+                (e.target as HTMLButtonElement).style.backgroundColor = "#1e40af";
             }}
           >
-            Nom *
-          </label>
-          <input
-            type="text"
-            id="nom"
-            name="nom"
-            value={formData.nom}
-            onChange={handleChange}
-            required
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "4px",
-              fontSize: "14px",
-              boxSizing: "border-box",
-            }}
-            placeholder="Votre nom complet"
-          />
-        </div>
-
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            htmlFor="email"
-            style={{
-              display: "block",
-              marginBottom: "5px",
-              fontWeight: "bold",
-            }}
-          >
-            Email *
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "4px",
-              fontSize: "14px",
-              boxSizing: "border-box",
-            }}
-            placeholder="votre.email@example.com"
-          />
-        </div>
-
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            htmlFor="telephone"
-            style={{
-              display: "block",
-              marginBottom: "5px",
-              fontWeight: "bold",
-            }}
-          >
-            Téléphone *
-          </label>
-          <input
-            type="tel"
-            id="telephone"
-            name="telephone"
-            value={formData.telephone}
-            onChange={handleChange}
-            required
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "4px",
-              fontSize: "14px",
-              boxSizing: "border-box",
-            }}
-            placeholder="XXX XXX XXX"
-          />
-        </div>
-
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            htmlFor="typeProjet"
-            style={{
-              display: "block",
-              marginBottom: "5px",
-              fontWeight: "bold",
-            }}
-          >
-            Type de projet *
-          </label>
-          <select
-            id="typeProjet"
-            name="typeProjet"
-            value={formData.typeProjet}
-            onChange={handleChange}
-            required
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "4px",
-              fontSize: "14px",
-              boxSizing: "border-box",
-            }}
-          >
-            <option style={{ color: "#000000ff" }} value="">
-              Sélectionnez un type de projet
-            </option>
-            <option style={{ color: "#000000ff" }} value="Construction">
-              Construction
-            </option>
-            <option style={{ color: "#000000ff" }} value="Rénovation">
-              Rénovation
-            </option>
-            <option style={{ color: "#000000ff" }} value="Extension">
-              Extension
-            </option>
-            <option style={{ color: "#000000ff" }} value="Aménagement">
-              Aménagement
-            </option>
-            <option style={{ color: "#000000ff" }} value="Autre">
-              Autre
-            </option>
-          </select>
-        </div>
-
-        <div style={{ marginBottom: "15px" }}>
-          <label
-            htmlFor="budget"
-            style={{
-              display: "block",
-              marginBottom: "5px",
-              fontWeight: "bold",
-            }}
-          >
-            Budget (optionnel)
-          </label>
-          <input
-            type="text"
-            id="budget"
-            name="budget"
-            value={formData.budget}
-            onChange={handleChange}
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "4px",
-              fontSize: "14px",
-              boxSizing: "border-box",
-            }}
-            placeholder="$$$ - $$$"
-          />
-        </div>
-
-        <div style={{ marginBottom: "20px" }}>
-          <label
-            htmlFor="description"
-            style={{
-              display: "block",
-              marginBottom: "5px",
-              fontWeight: "bold",
-            }}
-          >
-            Description du projet *
-          </label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-            style={{
-              width: "100%",
-              padding: "10px",
-              border: "1px solid #ddd",
-              borderRadius: "4px",
-              fontSize: "14px",
-              boxSizing: "border-box",
-              minHeight: "150px",
-              fontFamily: "Arial, sans-serif",
-            }}
-            placeholder="Décrivez votre projet en détail..."
-          />
-        </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            width: "100%",
-            padding: "12px",
-            backgroundColor: loading ? "#ccc" : "#ff9d3a",
-            color: "white",
-            border: "none",
-            borderRadius: "4px",
-            fontSize: "16px",
-            fontWeight: "bold",
-            cursor: loading ? "not-allowed" : "pointer",
-            transition: "background-color 0.3s",
-          }}
-          onMouseEnter={(e) => {
-            if (!loading)
-              (e.target as HTMLButtonElement).style.backgroundColor = "#e68a2e";
-          }}
-          onMouseLeave={(e) => {
-            if (!loading)
-              (e.target as HTMLButtonElement).style.backgroundColor = "#ff9d3a";
-          }}
-        >
-          {loading ? "Envoi en cours..." : "Envoyer ma demande"}
-        </button>
-      </form>
-    </div>
+            {loading ? "Envoi en cours..." : "Envoyer ma demande"}
+          </button>
+        </form>
+      </div>
+    </section>
   );
 }
