@@ -3,7 +3,7 @@
 export default function About() {
   return (
     <section id="about" className="py-20 bg-white">
-<div className="max-w-7xl mx-auto px-4" style={{ marginBottom: "3px" }}>
+<div className="max-w-7xl mx-auto px-4" >
         <h2 className="text-4xl font-bold mb-12 text-center text-gray-900">À Propos de Services Batiment Selmi</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">

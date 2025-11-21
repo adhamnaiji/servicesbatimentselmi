@@ -9,8 +9,8 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="min-h-screen bg-gradient-to-r from-blue-600 to-blue-800 text-white flex items-center pt-20">
-      <div className="max-w-7xl mx-auto px-4 w-full">
+    <section id="home" className="min-h-screen bg-gradient-to-r from-blue-600 to-blue-800 text-white flex items-center pt-20" >
+      <div className="max-w-7xl mx-auto px-4 w-full" style={{ marginBottom: "10px" }}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
@@ -49,10 +49,7 @@ export default function Hero() {
               <div className="text-4xl font-bold mb-2">24h</div>
               <p className="text-blue-100">Réponse devis</p>
             </div>
-            <div className="bg-white/20 backdrop-blur-md p-6 rounded-lg text-center">
-              <div className="text-4xl font-bold mb-2">30+</div>
-              <p className="text-blue-100">Ans d'expérience</p>
-            </div>
+            
           </div>
         </div>
       </div>
