@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Services Batiment Selmi" }],
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
   openGraph: {
-    type: "website", // Changed from invalid "business.business" to valid "website"
+    type: "website",
     url: "https://www.linaconstructions.com",
     title: "Services Batiment Selmi - Services Batiment Selmi En France",
     description:
@@ -59,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang="fr">
       <head>
         {/* Structured Data - LocalBusiness Schema */}
         <script
@@ -84,7 +84,10 @@ export default function RootLayout({
               telephone: "+352621633226",
               email: "info@linaconstructions.com",
               url: "https://www.linaconstructions.com",
-              sameAs: ["https://www.facebook.com/profile.php?id=61583341880229", "https://www.instagram.com/lina_constructions_luxembourg"],
+              sameAs: [
+                "https://www.facebook.com/profile.php?id=61583341880229",
+                "https://www.instagram.com/lina_constructions_luxembourg",
+              ],
               priceRange: "$$",
               areaServed: ["Tunis", "Tunisia"],
               knowsAbout: [

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import image1 from "./projects/1.jpeg";
 import image2 from "./projects/2.jpeg";
 import image3 from "./projects/3.jpeg";
@@ -68,33 +68,36 @@ const projectsData = [
   { id: 31, category: "lina constructions", src: image31, alt: "Projet 31" },
 ];
 
+// Component to track individual image loading
+function ProjectCard({ project }: { project: (typeof projectsData)[0] }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <div className="group overflow-hidden rounded-lg shadow-md hover:shadow-lg transition">
+      <div className={`relative h-64 overflow-hidden transition-all duration-300 ${
+        isLoaded ? "bg-transparent" : "bg-gray-200 animate-pulse"
+      }`}>
+        <Image
+          src={project.src}
+          alt={project.alt}
+          fill
+          className="object-cover group-hover:scale-105 transition duration-300"
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          onLoad={() => setIsLoaded(true)}
+        />
+      </div>
+    </div>
+  );
+}
+
 export default function Projects() {
   const [filter, setFilter] = useState("tous");
-  const [loading, setLoading] = useState(true);
-  const [loadedImages, setLoadedImages] = useState(0);
 
   const filteredProjects =
     filter === "tous"
       ? projectsData
       : projectsData.filter((project) => project.category === filter);
-
-  // Track image loading
-  const handleImageLoad = () => {
-    setLoadedImages((prev) => {
-      const newCount = prev + 1;
-      // Hide loading screen when all images are loaded
-      if (newCount >= filteredProjects.length) {
-        setTimeout(() => setLoading(false), 300); // Small delay for smooth transition
-      }
-      return newCount;
-    });
-  };
-
-  // Reset loading when filter changes
-  useEffect(() => {
-    setLoading(true);
-    setLoadedImages(0);
-  }, [filter]);
 
   return (
     <section id="projects" className="py-20 bg-gray-50">
@@ -102,30 +105,10 @@ export default function Projects() {
         <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Nos Projets</h2>
         <p className="text-center text-gray-600 mb-12">Réalisations de qualité</p>
 
-        {/* Loading Splash Screen */}
-        {loading && (
-          <div className="flex items-center justify-center min-h-64">
-            <div className="text-center">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-              <p className="mt-4 text-gray-600">Chargement des projets...</p>
-            </div>
-          </div>
-        )}
-
         {/* Projects Grid */}
-        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${loading ? "hidden" : ""}`}>
-          {filteredProjects.map((project, index) => (
-            <div key={project.id} className="group overflow-hidden rounded-lg shadow-md hover:shadow-lg transition">
-              <div className="relative h-64 overflow-hidden bg-gray-200">
-                <Image
-                  src={project.src}
-                  alt={project.alt}
-                  fill
-                  className="object-cover group-hover:scale-105 transition duration-300"
-                  onLoad={handleImageLoad}
-                />
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       </div>
