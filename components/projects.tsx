@@ -33,39 +33,52 @@ import image28 from "./projects/28.jpg";
 import image29 from "./projects/29.jpg";
 import image30 from "./projects/30.jpg";
 import image31 from "./projects/31.jpg";
+import image32 from "./projects/32.jpg";
+import image33 from "./projects/33.jpg";
+import image34 from "./projects/34.jpg";
+import image35 from "./projects/35.jpg";
+import image36 from "./projects/36.jpg";
+import image37 from "./projects/37.jpg";
+
 
 const projectsData = [
-  { id: 1, category: "lina constructions", src: image1, alt: "Projet 1" },
-  { id: 2, category: "lina constructions", src: image2, alt: "Projet 2" },
-  { id: 3, category: "lina constructions", src: image3, alt: "Projet 3" },
-  { id: 4, category: "lina constructions", src: image4, alt: "Projet 4" },
-  { id: 5, category: "lina constructions", src: image5, alt: "Projet 5" },
-  { id: 6, category: "lina constructions", src: image6, alt: "Projet 6" },
-  { id: 7, category: "lina constructions", src: image7, alt: "Projet 7" },
-  { id: 8, category: "lina constructions", src: image8, alt: "Projet 8" },
-  { id: 9, category: "lina constructions", src: image9, alt: "Projet 9" },
-  { id: 10, category: "lina constructions", src: image10, alt: "Projet 10" },
-  { id: 11, category: "lina constructions", src: image11, alt: "Projet 11" },
-  { id: 12, category: "lina constructions", src: image12, alt: "Projet 12" },
-  { id: 13, category: "lina constructions", src: image13, alt: "Projet 13" },
-  { id: 14, category: "lina constructions", src: image14, alt: "Projet 14" },
-  { id: 15, category: "lina constructions", src: image15, alt: "Projet 15" },
-  { id: 16, category: "lina constructions", src: image16, alt: "Projet 16" },
-  { id: 17, category: "lina constructions", src: image17, alt: "Projet 17" },
-  { id: 18, category: "lina constructions", src: image18, alt: "Projet 18" },
-  { id: 19, category: "lina constructions", src: image19, alt: "Projet 19" },
-  { id: 20, category: "lina constructions", src: image20, alt: "Projet 20" },
-  { id: 21, category: "lina constructions", src: image21, alt: "Projet 21" },
-  { id: 22, category: "lina constructions", src: image22, alt: "Projet 22" },
-  { id: 23, category: "lina constructions", src: image23, alt: "Projet 23" },
-  { id: 24, category: "lina constructions", src: image24, alt: "Projet 24" },
-  { id: 25, category: "lina constructions", src: image25, alt: "Projet 25" },
-  { id: 26, category: "lina constructions", src: image26, alt: "Projet 26" },
-  { id: 27, category: "lina constructions", src: image27, alt: "Projet 27" },
-  { id: 28, category: "lina constructions", src: image28, alt: "Projet 28" },
-  { id: 29, category: "lina constructions", src: image29, alt: "Projet 29" },
-  { id: 30, category: "lina constructions", src: image30, alt: "Projet 30" },
-  { id: 31, category: "lina constructions", src: image31, alt: "Projet 31" },
+  { id: 1, category: "services batiment selmi ", src: image1, alt: "Projet 1" },
+  { id: 2, category: "services batiment selmi", src: image2, alt: "Projet 2" },
+  { id: 3, category: "services batiment selmi", src: image3, alt: "Projet 3" },
+  { id: 4, category: "services batiment selmi", src: image4, alt: "Projet 4" },
+  { id: 5, category: "services batiment selmi", src: image5, alt: "Projet 5" },
+  { id: 6, category: "services batiment selmi", src: image6, alt: "Projet 6" },
+  { id: 7, category: "services batiment selmi", src: image7, alt: "Projet 7" },
+  { id: 8, category: "services batiment selmi", src: image8, alt: "Projet 8" },
+  { id: 9, category: "services batiment selmi", src: image9, alt: "Projet 9" },
+  { id: 10, category: "services batiment selmi", src: image10, alt: "Projet 10" },
+  { id: 11, category: "services batiment selmi", src: image11, alt: "Projet 11" },
+  { id: 12, category: "services batiment selmi", src: image12, alt: "Projet 12" },
+  { id: 13, category: "services batiment selmi", src: image13, alt: "Projet 13" },
+  { id: 14, category: "services batiment selmi", src: image14, alt: "Projet 14" },
+  { id: 15, category: "services batiment selmi", src: image15, alt: "Projet 15" },
+  { id: 16, category: "services batiment selmi", src: image16, alt: "Projet 16" },
+  { id: 17, category: "services batiment selmi", src: image17, alt: "Projet 17" },
+  { id: 18, category: "services batiment selmi", src: image18, alt: "Projet 18" },
+  { id: 19, category: "services batiment selmi", src: image19, alt: "Projet 19" },
+  { id: 20, category: "services batiment selmi", src: image20, alt: "Projet 20" },
+  { id: 21, category: "services batiment selmi", src: image21, alt: "Projet 21" },
+  { id: 22, category: "services batiment selmi", src: image22, alt: "Projet 22" },
+  { id: 23, category: "services batiment selmi", src: image23, alt: "Projet 23" },
+  { id: 24, category: "services batiment selmi", src: image24, alt: "Projet 24" },
+  { id: 25, category: "services batiment selmi", src: image25, alt: "Projet 25" },
+  { id: 26, category: "services batiment selmi", src: image26, alt: "Projet 26" },
+  { id: 27, category: "services batiment selmi", src: image27, alt: "Projet 27" },
+  { id: 28, category: "services batiment selmi", src: image28, alt: "Projet 28" },
+  { id: 29, category: "services batiment selmi", src: image29, alt: "Projet 29" },
+  { id: 30, category: "services batiment selmi", src: image30, alt: "Projet 30" },
+  { id: 31, category: "services batiment selmi", src: image31, alt: "Projet 31" },
+  { id: 31, category: "services batiment selmi", src: image32, alt: "Projet 32" },
+  { id: 31, category: "services batiment selmi", src: image33, alt: "Projet 33" },
+  { id: 31, category: "services batiment selmi", src: image34, alt: "Projet 34" },
+  { id: 31, category: "services batiment selmi", src: image35, alt: "Projet 35" },
+  { id: 31, category: "services batiment selmi", src: image36, alt: "Projet 36" },
+  { id: 31, category: "services batiment selmi", src: image37, alt: "Projet 37" },
 ];
 
 // Component to track individual image loading
