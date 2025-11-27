@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://www.linaconstructions.com/sitemap.xml
+Sitemap: https://www.servicesbatimentselmi.com/sitemap.xml

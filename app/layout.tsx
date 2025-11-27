@@ -7,9 +7,9 @@ const geist = Geist({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.servicesbatimentselmi.com"),
-  title: "Services Batiment Selmi SARLS - Construction générale Strassen",
+  title: "Services Batiment Selmi SARLS - Construction générale France",
   description:
-    "Services Batiment Selmi - Services de construction professionnels En France. Résidentiel, commercial et industriel. Qualité garantie, délais respectés, devis gratuit.",
+    "Services Batiment Selmi - Services de construction professionnels En france. Résidentiel, commercial et industriel. Qualité garantie, délais respectés, devis gratuit.",
   keywords: [
     "construction",
     "Services Batiment Selmi",
@@ -20,6 +20,19 @@ export const metadata: Metadata = {
     "batiment",
     "commercial",
     "industriel",
+    "batiment selmi",
+    "entreprise de construction",
+    "gestion de projet",
+    "rénovation de bâtiment",
+    "devis gratuit",
+    "construction durable",
+    "entrepreneur général",
+    "services de rénovation",
+    "construction clé en main",
+    "construction sur mesure",
+    "expertise en construction",
+    "construction fiable",
+    "services de construction professionnels",
   ],
   authors: [{ name: "Services Batiment Selmi" }],
   robots: "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1",
@@ -72,7 +85,7 @@ export default function RootLayout({
               name: "Services Batiment Selmi",
               image: "https://www.ServicesBatimentSelmi.com/logo.png",
               description:
-                "Entreprise de construction professionnelle spécialisée dans les projets résidentiels, commerciaux et industriels au Luxembourg.",
+                "Entreprise de construction professionnelle spécialisée dans les projets résidentiels, commerciaux et industriels en france.",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "36 rue Claude Bernard 57070 Metz",
