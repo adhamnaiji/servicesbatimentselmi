@@ -173,7 +173,7 @@ export default function ContactForm() {
               value={formData.telephone}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
-              placeholder="+352 XX XX XX XX"
+              placeholder="+33 XX XX XX XX"
               required
             />
           </div>

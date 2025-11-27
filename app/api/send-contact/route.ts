@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
     // Using onboarding@resend.dev for testing (domain still pending verification)
     const { data, error } = await resend.emails.send({
       from: 'Services Batiment Selmi <onboarding@resend.dev>', // TESTING DOMAIN - works immediately
-      to: ['adhemnaiji@gmail.com'], // Your personal email for testing
+      to: ['servicesbatimentselmi@outlook.fr'], // Your personal email for testing
       subject: `Nouvelle demande de contact - ${nom}`,
       html: htmlEmail,
       replyTo: email, // Allows direct replies to the client
