@@ -123,10 +123,18 @@ export default function ContactForm() {
   return (
     <section id="contact" className="py-20 bg-gray-50">
       <div className="max-w-2xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Demander un Devis</h2>
-        <p className="text-center text-gray-600 mb-12">Remplissez le formulaire ci-dessous et nous vous répondrons dans les 24 heures</p>
+        <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">
+          Demander un Devis
+        </h2>
+        <p className="text-center text-gray-600 mb-12">
+          Remplissez le formulaire ci-dessous et nous vous répondrons dans les
+          24 heures
+        </p>
 
-        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white p-8 rounded-lg shadow-lg"
+        >
           {message && (
             <div
               className={`mb-6 p-4 rounded-lg ${
@@ -140,54 +148,64 @@ export default function ContactForm() {
           )}
 
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">Nom *</label>
+            <label className="block text-gray-700 font-semibold mb-2">
+              Nom *
+            </label>
             <input
               type="text"
               name="nom"
               value={formData.nom}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black placeholder:text-gray-400"
               placeholder="Votre nom"
               required
             />
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">Email *</label>
+            <label className="block text-gray-700 font-semibold mb-2">
+              Email *
+            </label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black placeholder:text-gray-400"
               placeholder="votre.email@example.com"
               required
             />
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">Téléphone *</label>
+            <label className="block text-gray-700 font-semibold mb-2">
+              Téléphone *
+            </label>
             <input
               type="tel"
               name="telephone"
               value={formData.telephone}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black placeholder:text-gray-400"
               placeholder="+33 XX XX XX XX"
               required
             />
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">Type de projet *</label>
+            <label className="block text-gray-700 font-semibold mb-2">
+              Type de projet *
+            </label>
             <select
               name="typeProjet"
               value={formData.typeProjet}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black"
               required
             >
-              <option value="">Sélectionnez un type de projet</option>
+              <option value="" className="text-gray-400">
+                Sélectionnez un type de projet
+              </option>
               <option value="Construction">Construction</option>
               <option value="Rénovation">Rénovation</option>
               <option value="Extension">Extension</option>
@@ -197,24 +215,28 @@ export default function ContactForm() {
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">Budget (optionnel)</label>
+            <label className="block text-gray-700 font-semibold mb-2">
+              Budget (optionnel)
+            </label>
             <input
               type="text"
               name="budget"
               value={formData.budget}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black placeholder:text-gray-400"
               placeholder="ex: 50,000 - 100,000 €"
             />
           </div>
 
           <div className="mb-6">
-            <label className="block text-gray-700 font-semibold mb-2">Description du projet *</label>
+            <label className="block text-gray-700 font-semibold mb-2">
+              Description du projet *
+            </label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 text-black placeholder:text-gray-400"
               placeholder="Décrivez votre projet..."
               rows={6}
               required
@@ -227,11 +249,13 @@ export default function ContactForm() {
             className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition disabled:bg-gray-400"
             onMouseEnter={(e) => {
               if (!loading)
-                (e.target as HTMLButtonElement).style.backgroundColor = "#1e3a8a";
+                (e.target as HTMLButtonElement).style.backgroundColor =
+                  "#1e3a8a";
             }}
             onMouseLeave={(e) => {
               if (!loading)
-                (e.target as HTMLButtonElement).style.backgroundColor = "#1e40af";
+                (e.target as HTMLButtonElement).style.backgroundColor =
+                  "#1e40af";
             }}
           >
             {loading ? "Envoi en cours..." : "Envoyer ma demande"}
