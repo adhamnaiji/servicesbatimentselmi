@@ -47,7 +47,7 @@ export default function Hero() {
             </div>
             <div className="bg-white/20 backdrop-blur-md p-6 rounded-lg text-center">
               <div className="text-3xl md:text-4xl font-bold mb-2">24h</div>
-              <p className="text-sm text-blue-100">Réponse devissss</p>
+              <p className="text-sm text-blue-100">Réponse devis</p>
             </div>
           </div>
         </div>
