@@ -32,7 +32,7 @@ export default function Footer() {
             <div className="space-y-3 text-gray-300">
               <div className="flex items-center gap-3">
                 <FaPhone className="text-blue-400" />
-                <span>+33 06 95 95 63 97</span>
+                <span>+33 6 95 95 63 97</span>
               </div>
               <div className="flex items-center gap-3">
                 <FaEnvelope className="text-blue-400" />
@@ -58,7 +58,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="text-center text-gray-400 mt-8">
-          <p>&copy; 2024 Services Batiment Selmi. Tous droits réservés.</p>
+          <p>&copy; 2025 Services Batiment Selmi. Tous droits réservés.</p>
         </div>
       </div>
     </footer>
