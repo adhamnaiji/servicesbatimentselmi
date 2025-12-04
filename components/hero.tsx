@@ -14,8 +14,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Services Batiment Selmi : INTERIEUR/EXTERIEUR 
-              NETTOYAGE ET JARDINAGE
+              Services Batiment Selmi : INTERIEUR/EXTERIEUR NETTOYAGE ET JARDINAGE
             </h1>
             <p className="text-xl text-blue-100 mb-8">
               Solutions complètes de construction pour particuliers et entreprises. Résidentiel, commercial et
@@ -39,18 +38,17 @@ export default function Hero() {
 
           <div className="grid grid-cols-2 gap-6">
             <div className="bg-white/20 backdrop-blur-md p-6 rounded-lg text-center">
-              <div className="text-4xl font-bold mb-2">50+</div>
-              <p className="text-blue-100">Projets réalisés</p>
+              <div className="text-3xl md:text-4xl font-bold mb-2">50+</div>
+              <p className="text-sm text-blue-100">Projets réalisés</p>
             </div>
             <div className="bg-white/20 backdrop-blur-md p-6 rounded-lg text-center">
-              <div className="text-4xl font-bold mb-2">98%</div>
-              <p className="text-blue-100">Clients satisfaits</p>
+              <div className="text-3xl md:text-4xl font-bold mb-2">98%</div>
+              <p className="text-sm text-blue-100">Clients satisfaits</p>
             </div>
             <div className="bg-white/20 backdrop-blur-md p-6 rounded-lg text-center">
-              <div className="text-4xl font-bold mb-2">24h</div>
-              <p className="text-blue-100">Réponse devis</p>
+              <div className="text-3xl md:text-4xl font-bold mb-2">24h</div>
+              <p className="text-sm text-blue-100">Réponse devissss</p>
             </div>
-            
           </div>
         </div>
       </div>
